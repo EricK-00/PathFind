@@ -13,6 +13,7 @@ public static partial class GData
 public enum TerrainType
 {
     NONE = -1, 
-    PLAIN_PASS,
-    OCEAN_BLOCK
+    PLAIN_PASS, 
+    OCEAN_BLOCK, 
+
 }       // TerrainType

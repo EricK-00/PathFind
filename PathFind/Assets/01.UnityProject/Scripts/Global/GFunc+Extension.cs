@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static partial class GFunc
 {
-    //! Dictionary¿¡ ¿ÀºêÁ§Æ® ÇÁ¸®ÆÕÀ» Ä³½ÌÇÏ´Â ÇÔ¼ö
+    //! Dictionaryì— ì˜¤ë¸Œì íŠ¸ í”„ë¦¬íŒ¹ì„ ìºì‹±í•˜ëŠ” í•¨ìˆ˜
     public static void AddObjs(this Dictionary<string, GameObject> dict_, GameObject[] prefabs_)
     {
         foreach (var prefab in prefabs_)
@@ -13,7 +13,7 @@ public static partial class GFunc
         }
     }
 
-    //! ¸®½ºÆ®¸¦ ¼¯´Â ÇÔ¼ö
+    //! ë¦¬ìŠ¤íŠ¸ë¥¼ ì„ëŠ” í•¨ìˆ˜
     public static void Shuffle<T>(this List<T> targetList, int shuffleCnt = 0)
     {
         if (shuffleCnt.Equals(0))
@@ -36,7 +36,7 @@ public static partial class GFunc
         }
     }       //Shuffle()
 
-    //! ¸®½ºÆ®ÀÇ ¿ø¼Ò¸¦ ´Ù¸¥ °ª°ú SwapÇÏ´Â ÇÔ¼ö
+    //! ë¦¬ìŠ¤íŠ¸ì˜ ì›ì†Œë¥¼ ë‹¤ë¥¸ ê°’ê³¼ Swapí•˜ëŠ” í•¨ìˆ˜
     public static void Swap<T>(this List<T> targetList, ref T swapValue, int swapIdx)
     {
         T tempValue = targetList[swapIdx];
@@ -49,10 +49,36 @@ public static partial class GFunc
         return (minInclude <= targetValue && targetValue < maxExclude);
     }       //IsInRange()
 
-    //! float ºñ±³ ÇÔ¼ö
+    //! float ë¹„êµ í•¨ìˆ˜
     public static bool IsEquals(this float targetValue, float compareValue)
     {
         bool isEqual = Mathf.Approximately(targetValue, compareValue);
         return isEqual;
     }       //isEquals()
+
+    #region A star function
+    //! ë‘ ë…¸ë“œê°€ ì¤‘ë³µì¸ì§€ ê²€ì‚¬í•˜ëŠ” í•¨ìˆ˜
+    public static AStarNode FindNode(this List<AStarNode> nodeList, AStarNode compareNode)
+    {
+        if (nodeList.IsValid() == false)
+            return default;
+
+        AStarNode resultNode = default;
+        foreach (var node_ in nodeList)
+        {
+            if (node_.Terrain == default || node_.Terrain == null)
+                continue;
+            else if (compareNode.Terrain == default || compareNode.Terrain == null)
+                continue;
+
+            if (node_.Terrain.TileIdx1D.Equals(compareNode.Terrain.TileIdx1D))
+            {
+                resultNode = node_;
+            }
+            else { continue; }
+        }       // loop: ë…¸ë“œ ë¦¬ìŠ¤íŠ¸ë¥¼ ìˆœíšŒí•˜ëŠ” ë£¨í”„
+
+        return resultNode;
+    }       // FindNode()
+    #endregion      // A star function
 }

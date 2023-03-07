@@ -77,8 +77,34 @@ public class TerrainMap : TilemapController
         // } 타일맵의 일부를 일정 확률로 다른 타일로 교체하는 로직
 
         // { 기존에 존재하는 타일의 순서를 조정하고, 커늩롤러를 캐싱하는 로직
+        TerrainController tempTerrain = default;
+        TerrainType terrainType = TerrainType.NONE;
+
+        int loopCnt = 0;
+        foreach(GameObject tile_ in tileList)
+        {
+            tempTerrain = tile_.GetComponent<TerrainController>();
+            switch (tempTerrain.name)
+            {
+                case RDefine.PREFAB__TERRAIN_PLAIN:
+                    terrainType = TerrainType.PLAIN_PASS;
+                    break;
+                case RDefine.PREFAB__TERRAIN_OCEAN:
+                    terrainType = TerrainType.OCEAN_BLOCK;
+                    break;
+                default:
+                    terrainType = TerrainType.NONE;
+                    break;
+            }       //switch: 지형별로 다른 설정을 한다.
+
+            tempTerrain.SetUpTerrain(mapBoard, terrainType, loopCnt);
+            tempTerrain.transform.SetAsFirstSibling();
+            terrainList.Add(tempTerrain);
+            ++loopCnt;
+        }       // loop: 타일의 이름과 렌더링 순서대로 정렬하는 루프
         // } 기존에 존재하는 타일의 순서를 조정하고, 커늩롤러를 캐싱하는 로직
-    }
+
+    }       // Start()
 
     //! 초기화된 타이르이 정보를 연산한 맵의 가로, 세로 크기를 리턴한다.
     public Vector2Int GetCellSize() { return mapCellSize; }

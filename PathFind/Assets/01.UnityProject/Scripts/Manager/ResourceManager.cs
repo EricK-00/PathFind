@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ResourceManager : GSingleton<ResourceManager>
 {
-    private const string PATH__PREFAB__TERRAIN = "Prefabs/ObjectTiles/Terrains";
-    private const string PATH__PREFAB__OBSTACLE = "Prefabs/ObjectTiles/Obstacles";
+    private const string PATH__PREFAB__TERRAIN = "Prefabs/ObjectTiles/Terrains/";
+    private const string PATH__PREFAB__OBSTACLE = "Prefabs/ObjectTiles/Obstacles/";
 
     public Dictionary<string, GameObject> terrainPrefabs = default;
     public Dictionary<string , GameObject> obstaclePrefabs = default;

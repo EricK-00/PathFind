@@ -18,8 +18,8 @@ public class WorldCanvasScaler : MonoBehaviour
         cameraSize = GFunc.GetCameraSize();
         canvasSize = worldCanvas.gameObject.GetRectSizeDelta();
 
-        // Ä«¸Ş¶ó »çÀÌÁî¿Í Äµ¹ö½º »çÀÌÁî »çÀÌÀÇ Å©±â ºñ¸¦ ±¸ÇÑ´Ù.
-        // width¿Í height µÑ Áß ÇÏ³ªÀÇ °ªÀ¸·Î ºñÀ²À» °áÁ¤ÇÑ´Ù.
+        // ì¹´ë©”ë¼ ì‚¬ì´ì¦ˆì™€ ìº”ë²„ìŠ¤ ì‚¬ì´ì¦ˆ ì‚¬ì´ì˜ í¬ê¸° ë¹„ë¥¼ êµ¬í•œë‹¤.
+        // widthì™€ height ë‘˜ ì¤‘ í•˜ë‚˜ì˜ ê°’ìœ¼ë¡œ ë¹„ìœ¨ì„ ê²°ì •í•œë‹¤.
         canvasAspect.x = cameraSize.x / canvasSize.x;
         canvasAspect.y = canvasAspect.x;
 
